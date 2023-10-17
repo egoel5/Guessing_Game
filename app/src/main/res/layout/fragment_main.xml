@@ -8,6 +8,8 @@
     android:padding="10dp">
 
     <!-- TODO: Update blank fragment layout -->
+
+
     <TextView
         android:id="@+id/mainFragText"
         android:layout_width="match_parent"
@@ -37,5 +39,4 @@
         android:textSize="50dp"
         android:text="View High Scores">
     </Button>
-
 </LinearLayout>

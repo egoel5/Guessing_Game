@@ -6,6 +6,8 @@ import android.view.View;
 import androidx.databinding.DataBinderMapper;
 import androidx.databinding.DataBindingComponent;
 import androidx.databinding.ViewDataBinding;
+import com.example.c323_midtermproject.databinding.ScoreItemBindingImpl;
+import java.lang.IllegalArgumentException;
 import java.lang.Integer;
 import java.lang.Object;
 import java.lang.Override;
@@ -16,7 +18,13 @@ import java.util.HashMap;
 import java.util.List;
 
 public class DataBinderMapperImpl extends DataBinderMapper {
-  private static final SparseIntArray INTERNAL_LAYOUT_ID_LOOKUP = new SparseIntArray(0);
+  private static final int LAYOUT_SCOREITEM = 1;
+
+  private static final SparseIntArray INTERNAL_LAYOUT_ID_LOOKUP = new SparseIntArray(1);
+
+  static {
+    INTERNAL_LAYOUT_ID_LOOKUP.put(com.example.c323_midtermproject.R.layout.score_item, LAYOUT_SCOREITEM);
+  }
 
   @Override
   public ViewDataBinding getDataBinder(DataBindingComponent component, View view, int layoutId) {
@@ -25,6 +33,14 @@ public class DataBinderMapperImpl extends DataBinderMapper {
       final Object tag = view.getTag();
       if(tag == null) {
         throw new RuntimeException("view must have a tag");
+      }
+      switch(localizedLayoutId) {
+        case  LAYOUT_SCOREITEM: {
+          if ("layout/score_item_0".equals(tag)) {
+            return new ScoreItemBindingImpl(component, view);
+          }
+          throw new IllegalArgumentException("The tag for score_item is invalid. Received: " + tag);
+        }
       }
     }
     return null;
@@ -78,6 +94,10 @@ public class DataBinderMapperImpl extends DataBinderMapper {
   }
 
   private static class InnerLayoutIdLookup {
-    static final HashMap<String, Integer> sKeys = new HashMap<String, Integer>(0);
+    static final HashMap<String, Integer> sKeys = new HashMap<String, Integer>(1);
+
+    static {
+      sKeys.put("layout/score_item_0", com.example.c323_midtermproject.R.layout.score_item);
+    }
   }
 }
