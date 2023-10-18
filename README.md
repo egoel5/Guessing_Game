@@ -17,7 +17,7 @@ The following **extensions** are implemented:
 
 Here's a walkthrough of implemented user stories:
 
-![]()
+![](https://github.com/egoel5/C323_MidtermProject/blob/master/Midterm%20Project%20Walkthrough.gif)
 
 GIF created with [Adobe Express](https://new.express.adobe.com).
 
