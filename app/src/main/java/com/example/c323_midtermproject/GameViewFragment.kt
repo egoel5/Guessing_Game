@@ -65,32 +65,32 @@ class GameViewFragment : Fragment() {
         }
 
         binding.butGuess.setOnClickListener {
-                guessNum++
-                binding.tvGuessCount.setText(guessNum.toString())
-                val curGuess = binding.etGuess.text.toString()
+            guessNum++
+            binding.tvGuessCount.setText(guessNum.toString())
+            val curGuess = binding.etGuess.text.toString()
 
-                if (curGuess == (correctNum.toString())) {
-                    viewModel.updateScore()
-                    val action = GameViewFragmentDirections.actionGameViewFragmentToMainFragment()
-                    action.restart = true
-                    action.username = binding.etName.text.toString()
-                    action.amtGuess = guessNum
-                    this.findNavController()
-                        .navigate(action)
+            if (curGuess == (correctNum.toString())) {
+                viewModel.updateScore()
+                val action = GameViewFragmentDirections.actionGameViewFragmentToMainFragment()
+                action.restart = true
+                action.username = binding.etName.text.toString()
+                action.amtGuess = guessNum
+                this.findNavController()
+                    .navigate(action)
+            }
+            else {
+                if (curGuess.toInt() > correctNum) {
+                    showToast("Too High!")
+                    var mediaPlayer = MediaPlayer.create(context, R.raw.buzz)
+                    mediaPlayer.start()
                 }
                 else {
-                    if (curGuess.toInt() > correctNum) {
-                        showToast("Too High!")
-                        var mediaPlayer = MediaPlayer.create(context, R.raw.buzz)
-                        mediaPlayer.start()
-                    }
-                    else {
-                        showToast("Too Low!")
-                        var mediaPlayer = MediaPlayer.create(context, R.raw.buzz)
-                        mediaPlayer.start()
-                    }
+                    showToast("Too Low!")
+                    var mediaPlayer = MediaPlayer.create(context, R.raw.buzz)
+                    mediaPlayer.start()
                 }
             }
+        }
         return view
     }
 

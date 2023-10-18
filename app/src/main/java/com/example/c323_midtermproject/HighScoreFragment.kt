@@ -43,21 +43,21 @@ class HighScoreFragment : Fragment() {
         binding.lifecycleOwner = viewLifecycleOwner
 
         /**
-         * noteClicked : run onNoteClicked from viewModel using the noteId of the note that was clicked
+         * scoreClicked : run onScoreClicked from viewModel using the scoreId of the score that was clicked
          */
         fun scoreClicked (noteId : Long) {
             viewModel.onScoreClicked(noteId)
         }
 
         /**
-         * yesPressed : if yes is pressed on confirmation dialog, run deleteNote from viewModel
-         * using noteId whose delButton was pressed
+         * yesPressed : if yes is pressed on confirmation dialog, run deleteScore from viewModel
+         * using scoreId whose delButton was pressed
          */
         fun yesPressed(scoreId : Long) {
             binding.viewModel?.deleteScore(scoreId)
         }
         /**
-         * deleteClicked : create a confirmation dialog to delete note whose delButton was pressed
+         * deleteClicked : create a confirmation dialog to delete score whose delButton was pressed
          */
         fun deleteClicked (noteId : Long) {
             ConfirmDeleteDialogFragment(noteId,::yesPressed).show(childFragmentManager,

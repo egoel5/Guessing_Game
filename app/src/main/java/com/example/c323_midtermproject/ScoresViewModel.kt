@@ -23,7 +23,7 @@ class ScoresViewModel(val dao: ScoreDao) : ViewModel() {
         }
     }
     /**
-     * Delete note based on note's value
+     * Delete score based on score's value
      */
     fun deleteScore(scoreId: Long) {
         viewModelScope.launch {
@@ -34,7 +34,7 @@ class ScoresViewModel(val dao: ScoreDao) : ViewModel() {
     }
 
     /**
-     * make sure navigateToList's value is proper so it doesn't go to EditNoteFragment when it shouldn't
+     * make sure navigateToList's value is proper so it doesn't go to GameViewFragment when it shouldn't
      */
 
     fun onScoreClicked(scoreId: Long) {
