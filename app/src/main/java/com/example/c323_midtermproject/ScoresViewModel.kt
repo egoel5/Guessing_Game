@@ -6,8 +6,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.launch
 class ScoresViewModel(val dao: ScoreDao) : ViewModel() {
-    var newUserName = ""
-    var newHighScore = 0
+    val newScoreUser = "New User"
     val scores = dao.getAll()
     private val _navigateToScore = MutableLiveData<Long?>()
     val navigateToScore : LiveData<Long?>
@@ -16,11 +15,10 @@ class ScoresViewModel(val dao: ScoreDao) : ViewModel() {
     /**
      * Add a new score with newScoreUsername and newHighScore being set
      */
-    fun addNote() {
+    fun addScore() {
         viewModelScope.launch {
             val score = Score()
-            score.scoreUser = newUserName
-            score.scoreNum = newHighScore
+            score.scoreUser = newScoreUser
             dao.insert(score)
         }
     }
@@ -34,6 +32,10 @@ class ScoresViewModel(val dao: ScoreDao) : ViewModel() {
             dao.delete(score)
         }
     }
+
+    /**
+     * make sure navigateToList's value is proper so it doesn't go to EditNoteFragment when it shouldn't
+     */
 
     fun onScoreClicked(scoreId: Long) {
         _navigateToScore.value = scoreId

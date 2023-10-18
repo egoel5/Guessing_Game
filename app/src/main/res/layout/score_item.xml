@@ -19,14 +19,14 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:textSize="30dp"
-            android:text="username:"/>
+            android:text="@={score.scoreUser}"/>
         <TextView
             android:id="@+id/tvScore"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:textSize="30dp"
-            android:text="0"/>
+            android:text="@={score.scoreNum}"/>
 
         <Button
             android:id="@+id/del_button"

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".HighScoreFragment"
@@ -18,23 +19,32 @@
         android:layout_height="match_parent"
         android:orientation="vertical"
         android:layout_margin="10dp">
-        <androidx.recyclerview.widget.RecyclerView
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/scoresList"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager">
-        </androidx.recyclerview.widget.RecyclerView>
-
+            android:layout_height="match_parent"
+            android:minHeight="750dp"
+            app:layoutManager="androidx.recyclerview.widget.GridLayoutManager">
+            </androidx.recyclerview.widget.RecyclerView>
+            <TextView
+                android:id="@+id/tvNoScores"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="No High Scores Yet"
+                android:textSize="30dp"
+                android:padding="30dp"
+                android:visibility="invisible"></TextView>
+        </FrameLayout>
         <Button
             android:id="@+id/butBackHome"
             style="@style/Widget.AppCompat.Button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/back_to_home"
-            android:textSize="25sp"
-            android:onClick="@{() -> viewModel.addNote()}">
-
+            android:textSize="25sp">
         </Button>
     </LinearLayout>
 </layout>

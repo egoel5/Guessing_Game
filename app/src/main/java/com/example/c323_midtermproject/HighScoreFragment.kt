@@ -1,10 +1,13 @@
 package com.example.c323_midtermproject
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.get
+import androidx.core.view.isVisible
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
@@ -17,9 +20,9 @@ import com.example.c323_midtermproject.databinding.FragmentHighScoreBinding
  * create an instance of this fragment.
  */
 class HighScoreFragment : Fragment() {
+    // initialize binding and add non-null asserted calls
     private var _binding: FragmentHighScoreBinding? = null
     private val binding get() =_binding!!
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -40,6 +43,13 @@ class HighScoreFragment : Fragment() {
         binding.lifecycleOwner = viewLifecycleOwner
 
         /**
+         * noteClicked : run onNoteClicked from viewModel using the noteId of the note that was clicked
+         */
+        fun scoreClicked (noteId : Long) {
+            viewModel.onScoreClicked(noteId)
+        }
+
+        /**
          * yesPressed : if yes is pressed on confirmation dialog, run deleteNote from viewModel
          * using noteId whose delButton was pressed
          */
@@ -54,7 +64,8 @@ class HighScoreFragment : Fragment() {
                 ConfirmDeleteDialogFragment.TAG)
         }
 
-        val adapter = ScoreItemAdapter(::deleteClicked)
+        // initialize and set adapter
+        val adapter = ScoreItemAdapter(::scoreClicked, ::deleteClicked)
         binding.scoresList.adapter
 
         // when a notes item is observed, submitList of notes to the adapter
@@ -63,6 +74,12 @@ class HighScoreFragment : Fragment() {
                 adapter.submitList(it)
             }
         })
+
+        if (viewModel.scores.value == null) {
+            Log.v("a", "empty")
+            binding.scoresList.visibility = View.INVISIBLE
+            binding.tvNoScores.visibility = View.VISIBLE
+        }
 
         binding.butBackHome.setOnClickListener {
             val action = HighScoreFragmentDirections.actionHighScoreFragmentToMainFragment()

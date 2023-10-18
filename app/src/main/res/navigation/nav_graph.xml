@@ -15,7 +15,24 @@
             app:destination="@id/highScoreFragment" />
         <action
             android:id="@+id/action_mainFragment_to_gameViewFragment"
-            app:destination="@id/gameViewFragment" />
+            app:destination="@id/gameViewFragment">
+        </action>
+        <argument
+            android:name="restart"
+            app:argType="boolean"
+            android:defaultValue="false">
+        </argument>
+        <argument
+            android:name="username"
+            app:argType="string"
+            android:defaultValue="">
+        </argument>
+        <argument
+            android:name="amtGuess"
+            app:argType="integer"
+            android:defaultValue="0">
+        </argument>
+
     </fragment>
     <fragment
         android:id="@+id/gameViewFragment"
@@ -24,7 +41,11 @@
         tools:layout="@layout/fragment_game_view" >
         <action
             android:id="@+id/action_gameViewFragment_to_mainFragment"
-            app:destination="@id/mainFragment" />
+            app:destination="@id/mainFragment"></action>
+        <argument
+            android:name="scoreId"
+            app:argType="long">
+        </argument>
     </fragment>
     <fragment
         android:id="@+id/highScoreFragment"

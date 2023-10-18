@@ -1,46 +1,57 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".MainFragment"
-    android:orientation="vertical"
-    android:padding="10dp"
-    tools:ignore="MissingDefaultResource">
+    tools:context=".MainFragment">
+
+    <data>
+        <variable
+            name="viewModel"
+            type="com.example.c323_midtermproject.ScoresViewModel" />
+    </data>
 
     <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:id="@+id/mainFragText"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Welcome To The Game!"
-        android:textSize="60dp"
-        android:layout_weight="1"
-        android:textAlignment="center" />
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="7">
-        <Button
-            android:id="@+id/playButton"
-            style="@style/Widget.AppCompat.Button"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="10dp"
+        tools:ignore="MissingDefaultResource">
+        <TextView
+            android:id="@+id/mainFragText"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:textSize="70dp"
-            android:text="Play Game">
-        </Button>
-
-        <Button
-            android:id="@+id/viewHsButton"
-            style="@style/Widget.AppCompat.Button"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:text="Welcome To The Game!"
             android:textSize="60dp"
-            android:text="View High Scores">
-        </Button>
-    </LinearLayout>
+            android:layout_weight="1"
+            android:textAlignment="center" />
 
-</LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="7">
+            <Button
+                android:id="@+id/playButton"
+                style="@style/Widget.AppCompat.Button"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:textSize="70dp"
+                android:text="Play Game"
+                android:onClick="@={() -> viewModel.onScoreClicked(-1)">
+            </Button>
+
+            <Button
+                android:id="@+id/viewHsButton"
+                style="@style/Widget.AppCompat.Button"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:textSize="60dp"
+                android:text="View High Scores">
+            </Button>
+        </LinearLayout>
+
+    </LinearLayout>
+</layout>
